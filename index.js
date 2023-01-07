@@ -14,7 +14,7 @@ const db = mongoose.connection
 db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('Database Connected'))
 
-app.use(express.json())
+app.use(express.json()) //! untuk nerima data JSON
 app.use('/product', route)
 
 app.listen(port, () => console.log(`Server Running in port: ${port}`))
