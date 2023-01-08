@@ -5,10 +5,29 @@ export const getProducts = async (req, res) => {
         const products = await Product.find()
         res
             .status(200)
-            .json(products)
+            .json({
+                "list Product": products
+            })
     } catch (error) {
         res
             .status(500)
+            .json({
+            message: error.message
+        })
+    }
+}
+
+export const showProductById = async (req, res) => {
+    try {
+        const product = await Product.findById(req.params.id)
+        res
+            .status(200)
+            .json({
+                product
+            })
+    } catch (error) {
+        res
+            .status(404)
             .json({
             message: error.message
         })
