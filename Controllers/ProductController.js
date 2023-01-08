@@ -21,7 +21,10 @@ export const storeProduct = async (req, res) => {
         const save_product = await product.save()
         res
             .status(201)
-            .json(save_product)
+            .json({
+                message: 'Data has been stored',
+                data: save_product
+            })
     } catch (error) {
         res
             .status(400)
@@ -39,7 +42,10 @@ export const updateProduct = async (req, res) => {
             )
         res
             .status(200)
-            .json(update_product)
+            .json({
+                message: 'Data has been updated',
+                data: update_product
+            })
     } catch (error) {
         res
             .status(400)
