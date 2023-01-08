@@ -1,6 +1,7 @@
 import Product from "../Models/Product.js"
 
 export const getProducts = async (req, res) => {
+
     try {
         const products = await Product.find()
         res
@@ -18,6 +19,7 @@ export const getProducts = async (req, res) => {
 }
 
 export const showProductById = async (req, res) => {
+
     try {
         const product = await Product.findById(req.params.id)
         res
@@ -36,6 +38,7 @@ export const showProductById = async (req, res) => {
 
 export const storeProduct = async (req, res) => {
     const product = new Product(req.body)
+
     try {
         const save_product = await product.save()
         res
@@ -54,6 +57,10 @@ export const storeProduct = async (req, res) => {
 }
 
 export const updateProduct = async (req, res) => {
+    const check_id = await Product.findById(req.params.id)
+
+    if ( !check_id ) return res.status(404).json({ message: 'Data not found' })
+
     try {
         const update_product = await Product.updateOne(
             {_id: req.params.id},
@@ -75,6 +82,10 @@ export const updateProduct = async (req, res) => {
 }
 
 export const deleteProduct = async (req, res) => {
+    const check_id = await Product.findById(req.params.id)
+
+    if ( !check_id ) return res.status(404).json({ message: 'Data not found' })
+
     try {
         const delete_product = await Product.deleteOne(
             {_id: req.params.id}
