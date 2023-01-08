@@ -3,8 +3,10 @@ import {
     getProducts,
     showProductById,
     storeProduct,
-    updateProduct
- } from "../Controllers/ProductController.js"
+    updateProduct,
+    deleteProduct
+ } 
+ from "../Controllers/ProductController.js"
 
 const router = express.Router()
 
@@ -19,5 +21,7 @@ router.post('/', storeProduct)
 
 //! === U P D A T E ===
 router.patch('/:id', updateProduct)
+
+router.delete('/:id', deleteProduct)
 
 export default router

@@ -73,3 +73,22 @@ export const updateProduct = async (req, res) => {
         })
     }
 }
+
+export const deleteProduct = async (req, res) => {
+    try {
+        const delete_product = await Product.deleteOne(
+            {_id: req.params.id}
+            )
+        res
+            .status(200)
+            .json({
+                message: 'Data has been deleted'
+            })
+    } catch (error) {
+        res
+            .status(400)
+            .json({
+            message: error.message
+        })
+    }
+}
